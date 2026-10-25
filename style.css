@@ -1,0 +1,276 @@
+/* =========================================
+   1. БАЗОВЫЕ СТИЛИ И СБРОС
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Убираем стандартный Times New Roman */
+}
+
+html {
+    scroll-behavior: smooth; /* Включает плавную прокрутку */
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Настройка шапки с затемнением фона */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    
+    /* Ставим сплошной черный цвет */
+    background-color: #000000; 
+    
+    height: 80px;
+}
+
+/* Делаем текст логотипа белым и добавляем тень */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff; /* Белый цвет */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Темная тень для читаемости */
+}
+
+/* Текст картинки-логотипа (если она есть) */
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8)); /* Тень для картинки */
+}
+
+/* Делаем ссылки в меню белыми */
+nav a {
+    text-decoration: none;
+    color: #ffffff; /* Белый цвет */
+    font-size: 16px;
+    font-weight: bold; /* Жирнее для читаемости */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); /* Тень */
+    transition: color 0.3s ease;
+}
+
+/* Цвет при наведении (например, светло-серый или желтоватый) */
+nav a:hover {
+    color: #ffcc00; /* Желтый цвет при наведении (можно поменять на любой) */
+}
+
+/* --- Главный экран (Hero) --- */
+.hero {
+    position: relative; /* Важно! Чтобы картинка позиционировалась относительно этого блока */
+    padding: 120px 20px;
+    text-align: center;
+    overflow: hidden; /* Скрывает то, что вылезает за края */
+    background-color: #111; /* Темный фон на случай, если картинка не загрузится */
+}
+
+/* Настройка картинки */
+.hero-bg-img {
+    position: absolute; /* Вынимаем из потока и кладем на фон */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Растягиваем, сохраняя пропорции */
+    z-index: 1; /* Кладем на самый нижний слой */
+    opacity: 0.5; /* Делаем картинку полупрозрачной, чтобы текст читался */
+}
+
+/* Настройка контента */
+.hero-content {
+    position: relative; /* Поднимаем текст над картинкой */
+    z-index: 2; /* Текст выше картинки */
+    color: white; /* Белый текст, так как фон темный */
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.hero p {
+    font-size: 24px;
+    color: #fffefe;
+    margin-bottom: 40px;
+}
+
+.cta-button {
+    background-color: #ff6b6b; /* Красный цвет */
+    color: white;
+    font-size: 20px;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background-color: #ff4a4a; /* Темнеет при наведении */
+}
+
+/* --- Преимущества (Features) --- */
+.features {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.features h2 {
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Легкая тень */
+    border: 1px solid #eee;
+}
+
+/* --- Подвал --- */
+footer {
+    background-color: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 40px;
+}
+
+/* =========================================
+   2. АДАПТИВНОСТЬ (Мобильная версия)
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .hero {
+        padding: 80px 20px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .hero p {
+        font-size: 18px;
+    }
+    .cards {
+        flex-direction: column; /* Карточки в столбик */
+        align-items: center;
+    }
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* =========================================
+   3. АНИМАЦИЯ ПРИ СКРОЛЛЕ
+   ========================================= */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.logo {
+    display: flex; /* Ставит картинку и текст в один ряд */
+    align-items: center; /* Выравнивает их по центру по вертикали */
+    gap: 10px; /* Расстояние между картинкой и текстом */
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Настройки для самой картинки */
+.logo img {
+    height: 40px; /* Высота логотипа. Можете изменить под свой вкус */
+    width: auto; /* Ширина подстроится автоматически, чтобы не искажать пропорции */
+    object-fit: contain; /* Защита от искажений */
+}
+/* =========================================
+   СТРАНИЦА КОНТАКТОВ (ИДЕНТИЧНАЯ ГЛАВНОЙ)
+   ========================================= */
+.contact-page {
+    /* Тот же фон, что и на главной, с таким же затемнением */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/fon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Делаем так, чтобы блок занимал весь экран минус высота шапки */
+    min-height: calc(100vh - 80px); 
+    
+    /* Выравниваем контент по центру */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Белый текст для страницы контактов */
+.contact-page h1 {
+    font-size: 56px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.contact-page p {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+/* Карточка с контактами */
+.contact-info {
+    background: rgba(30, 30, 30, 0.8); /* Темная полупрозрачная */
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    text-align: left;
+    margin-bottom: 30px;
+    border: 1px solid #555;
+    font-size: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #ffffff;
+}
+.contacts-section p {
+    font-size: 20px;
+    color: hsl(0, 0%, 100%);
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #fffcfc;
+}
